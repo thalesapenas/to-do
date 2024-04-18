@@ -22,6 +22,9 @@ class task(BaseModel):
 
 banco: List[task] = []
 
+@app.get("/") # listar tarefas
+def bem_vindo():
+    return "fala, izaias! bem vindo ao Back end do to-do!"
 
 @app.get("/task") # listar tarefas
 def lista_de_tarefas():
