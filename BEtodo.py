@@ -4,16 +4,19 @@ from typing import List, Optional
 from pydantic import BaseModel
 from uuid import uuid4
 
-app = FastAPI()
+middleware = [
+    Middleware(
+        CORSMiddleware,
+        allow_origins=[''],
+        allow_credentials=True,
+        allow_methods=[''],
+        allow_headers=['*']
+    )
+]
 
-origens = ['http://blablalba:1231231']  #coloca o endereço do host front-end pra ficar liberado
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origens,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+app = FastAPI(middleware=middleware)
+
+
 
 class task(BaseModel):
     id: Optional[str]= None
